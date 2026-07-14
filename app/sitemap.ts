@@ -5,6 +5,7 @@ import { projects } from "@/data/portfolio";
 import { industries } from "@/data/industries";
 import { posts } from "@/data/insights";
 import { competitors } from "@/data/competitors";
+import { verticals } from "@/data/verticals";
 
 export const dynamic = "force-static";
 
@@ -22,7 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/insights",
     "/testimonials",
     "/careers",
-    "/websites-for-restaurants",
     "/tools",
     "/tools/website-audit",
     "/tools/invoice-generator",
@@ -76,6 +76,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
+  const verticalRoutes: MetadataRoute.Sitemap = verticals.map((v) => ({
+    url: `${base}/${v.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
   return [
     ...routes,
     ...serviceRoutes,
@@ -83,5 +90,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...industryRoutes,
     ...insightRoutes,
     ...versusRoutes,
+    ...verticalRoutes,
   ];
 }
